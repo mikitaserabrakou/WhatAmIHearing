@@ -7,7 +7,8 @@ namespace WhatAmIHearing.Shazam;
 
 internal sealed class Api : IDisposable
 {
-   private const string DetectApiEndpoint = "https://yxo-proxy.vercel.app/api/detect";
+   private const string DetectApiEndpoint = "https://yxo-proxy.vercel.app/api/detect"; 
+
 
    private readonly ApiClient _client = new();
 
