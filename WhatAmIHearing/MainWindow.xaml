@@ -72,8 +72,7 @@
                          Visibility="{Binding ElementName=KeepOpenInTrayCheckbox, Path=IsChecked, Converter={StaticResource VisibleIfTrue}, Mode=OneWay}"
                          IsChecked="{Binding Settings.OpenHidden, Mode=TwoWay}" />
 
-               <CheckBox Margin="0,2,0,0"
-                         Content="Keep window on top"
+               <CheckBox Content="Keep window on top"
                          IsChecked="{Binding Settings.KeepWindowTopmost, Mode=TwoWay}" />
             </StackPanel>
          </commonControls:AnimatedGroupedExpander>
@@ -108,17 +107,21 @@
                             Width="80" />
                </StackPanel>
 
-               <CheckBox Content="Place identified song title on clipboard"
+               <CheckBox Content="Display input devices in device dropdown"
                          Margin="0,6,0,0"
+                         IsChecked="{Binding Settings.DisplayInputDevices, Mode=TwoWay}" />
+
+               <CheckBox Content="Place identified song title on clipboard"
+                         Margin="0,2,0,0"
                          IsChecked="{Binding Settings.PutTitleOnClipboard, Mode=TwoWay}" />
 
                <CheckBox x:Name="OpenShazamCheckbox"
                          Content="Open identified song in Shazam"
-                         Margin="0,4,0,0"
+                         Margin="0,2,0,0"
                          IsChecked="{Binding Settings.OpenShazamOnResultFound, Mode=TwoWay}" />
 
                <CheckBox Content="Minimize to tray after recording is done"
-                         Margin="8,4,0,0"
+                         Margin="8,2,0,0"
                          IsEnabled="{Binding ElementName=KeepOpenInTrayCheckbox, Path=IsChecked, Mode=OneWay}"
                          Visibility="{Binding ElementName=OpenShazamCheckbox, Path=IsChecked, Converter={StaticResource VisibleIfTrue}, Mode=OneWay}"
                          IsChecked="{Binding Settings.HideWindowAfterRecord, Mode=TwoWay}" />
@@ -145,19 +148,19 @@
 
                   <TextBox Grid.Column="1"
                            x:Name="CustomApiKeyTextBox"
-                           Text="{Binding ApiVm.ShazamApiKey, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
+                           Text="{Binding Settings.KeyData.ShazamApiKey, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" />
 
                   <TextBlock Grid.Column="1" 
                              Text="Using default API Key"
                              IsHitTestVisible="False"
                              Margin="4,0,0,0"
                              Opacity="0.6"
-                             Visibility="{Binding ApiVm.UseDefaultKey, Converter={StaticResource VisibleIfTrue}, Mode=OneWay}"
+                             Visibility="{Binding Settings.KeyData.UseDefaultKey, Converter={StaticResource VisibleIfTrue}, Mode=OneWay}"
                              VerticalAlignment="Center" />
                </Grid>
 
                <Grid Margin="0,0,0,6"
-                     Visibility="{Binding ApiVm.CanDisplayQuotaData, Converter={StaticResource VisibleIfTrue}, Mode=OneWay}">
+                     Visibility="{Binding Settings.KeyData.CanDisplayQuotaData, Converter={StaticResource VisibleIfTrue}, Mode=OneWay}">
                   <Grid.ColumnDefinitions>
                      <ColumnDefinition Width="Auto"
                                        SharedSizeGroup="ApiSettingsLabels" />
@@ -173,15 +176,15 @@
                                Margin="-1,0,1,0"
                                Background="White"
                                Foreground="{StaticResource ProgressBarFillBrush}"
-                               Maximum="{Binding ApiVm.QuotaLimit, Mode=OneWay}"
-                               Value="{Binding ApiVm.QuotaUsed, Mode=OneWay}"
+                               Maximum="{Binding Settings.KeyData.QuotaLimit, Mode=OneWay}"
+                               Value="{Binding Settings.KeyData.QuotaUsed, Mode=OneWay}"
                                ToolTip="Quota values are updated after every audio identification" />
 
                   <TextBlock Grid.Column="1"
                              Margin="4,0,0,0"
                              VerticalAlignment="Center"
                              IsHitTestVisible="False">
-                     <Run Text="{Binding ApiVm.QuotaUsed, Mode=OneWay}" /> / <Run Text="{Binding ApiVm.QuotaLimit, Mode=OneWay}" />
+                     <Run Text="{Binding Settings.KeyData.QuotaUsed, Mode=OneWay}" /> / <Run Text="{Binding Settings.KeyData.QuotaLimit, Mode=OneWay}" />
                   </TextBlock>
                </Grid>
 

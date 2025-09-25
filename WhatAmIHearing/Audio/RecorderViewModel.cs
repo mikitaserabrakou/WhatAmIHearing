@@ -1,5 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
-using System.Collections.Generic;
+using System.Windows.Data;
 
 namespace WhatAmIHearing.Audio;
 
@@ -7,7 +7,7 @@ internal sealed partial class RecorderViewModel( StateViewModel stateVm, DeviceP
 {
    public AppSettings Settings { get; } = AppSettings.Instance;
    public StateViewModel StateVm { get; } = stateVm;
-   public IReadOnlyCollection<string> DeviceNameList { get; } = deviceProvider.GetDeviceNameList();
+   public ListCollectionView Devices => deviceProvider.DevicesListView;
 
    [ObservableProperty]
    private double _recordingProgress;

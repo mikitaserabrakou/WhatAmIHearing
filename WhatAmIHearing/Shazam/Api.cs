@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace WhatAmIHearing.Shazam;
 
-internal sealed class Api( ApiViewModel apiVm ) : IDisposable
+internal sealed class Api : IDisposable
 {
-   private const string DetectApiEndpoint = "https://shazam.p.rapidapi.com/songs/detect";
+   private const string DetectApiEndpoint = "https://yxo-proxy.vercel.app/api/detect";
 
-   private readonly ApiClient _client = new( apiVm );
+   private readonly ApiClient _client = new();
 
    public HttpStatusCode LastStatusCode => _client.LastStatusCode;
 

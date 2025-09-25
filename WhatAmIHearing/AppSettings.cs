@@ -1,4 +1,4 @@
-﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.ComponentModel;
 using System.Text.Json.Serialization;
 using System.Windows.Input;
 using ZemotoCommon;
@@ -34,7 +34,7 @@ internal sealed partial class AppSettings : ObservableObject
    public void Save() => _configFile.SerializeInto( this );
 
    [ObservableProperty]
-   private string _selectedDevice = Constants.DefaultDeviceName;
+   private string _selectedDevice = Constants.DefaultOutputDeviceName;
 
    [ObservableProperty]
    private bool _keepOpenInTray = true;
@@ -57,6 +57,9 @@ internal sealed partial class AppSettings : ObservableObject
    private bool _keepWindowTopmost;
 
    [ObservableProperty]
+   private bool _displayInputDevices;
+
+   [ObservableProperty]
    private bool _putTitleOnClipboard;
 
    [ObservableProperty]
@@ -73,4 +76,34 @@ internal sealed partial class AppSettings : ObservableObject
 
    [ObservableProperty]
    private double _historyHeight = 80;
+
+   [ObservableProperty]
+   private ApiKeyData _keyData;
+}
+
+internal sealed partial class ApiKeyData : ObservableObject
+{
+   public const string DefaultShazamApiKey = "<Placeholder>";
+
+   [ObservableProperty]
+   [NotifyPropertyChangedFor( nameof( UseDefaultKey ) )]
+   [NotifyPropertyChangedFor( nameof( CanDisplayQuotaData ) )]
+   private string _shazamApiKey;
+   partial void OnShazamApiKeyChanged( string value )
+   {
+      QuotaLimit = 0;
+      QuotaUsed = 0;
+   }
+
+   public bool UseDefaultKey => string.IsNullOrWhiteSpace( _shazamApiKey );
+
+   [ObservableProperty]
+   [NotifyPropertyChangedFor( nameof( CanDisplayQuotaData ) )]
+   private int _quotaLimit = -1;
+
+   [ObservableProperty]
+   [NotifyPropertyChangedFor( nameof( CanDisplayQuotaData ) )]
+   private int _quotaUsed = -1;
+
+   public bool CanDisplayQuotaData => !UseDefaultKey && _quotaLimit > 0 && _quotaUsed >= 0;
 }
