@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Interop;
 using ZemotoCommon.UI;
@@ -31,6 +32,7 @@ internal sealed partial class MainWindow
       source?.AddHook( WndProc );
 
       CustomApiKeyTextBox.Password = _model.Settings.KeyData.ShazamApiKey;
+      CustomApiProxyTextBox.Text = _model.Settings.CustomApiEndpoint;
    }
 
    public void HideToTray()
@@ -40,7 +42,7 @@ internal sealed partial class MainWindow
    }
 
    private void OnCustomApiKeyChanged( object sender, RoutedEventArgs e ) => _model.Settings.KeyData.ShazamApiKey = CustomApiKeyTextBox.Password.Trim();
-
+   private void OnCustomApiEndpointChanged( object sender, TextChangedEventArgs e ) => _model.Settings.CustomApiEndpoint = CustomApiProxyTextBox.Text.Trim();
    public bool RegisterRecordHotkey( Hotkey hotkey, out string error )
    {
       if ( !UnregisterRecordHotkey( out error ) )

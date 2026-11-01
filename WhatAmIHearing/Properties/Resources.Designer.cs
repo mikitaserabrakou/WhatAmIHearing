@@ -79,6 +79,15 @@ namespace WhatAmIHearing.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Proxy:.
+        /// </summary>
+        public static string ApiProxyLabel {
+            get {
+                return ResourceManager.GetString("ApiProxyLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to API Settings.
         /// </summary>
         public static string ApiSettingsHeader {
@@ -507,6 +516,15 @@ namespace WhatAmIHearing.Properties {
         public static string TopmostWindowCheckboxToolTip {
             get {
                 return ResourceManager.GetString("TopmostWindowCheckboxToolTip", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Custom API Endpoint. Leave empty for default..
+        /// </summary>
+        public static string UseCustomApiEndpoint {
+            get {
+                return ResourceManager.GetString("UseCustomApiEndpoint", resourceCulture);
             }
         }
         

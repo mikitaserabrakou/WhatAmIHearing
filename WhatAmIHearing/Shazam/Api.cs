@@ -17,7 +17,7 @@ internal sealed class Api : IDisposable
 
    public async Task<DetectedTrackInfo?> DetectSongAsync( byte[] audioData )
    {
-      var detectResponse = await _client.SendPostRequestAsync( DetectApiEndpoint, audioData );
+      var detectResponse = await _client.SendPostRequestAsync( AppSettings.Instance.UseDefaultApiEndpoint ? DetectApiEndpoint : AppSettings.Instance.CustomApiEndpoint, audioData );
       if ( string.IsNullOrEmpty( detectResponse ) )
       {
          return null;

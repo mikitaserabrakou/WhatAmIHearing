@@ -22,23 +22,23 @@
         UseLayoutRounding="True"
         d:DataContext="{d:DesignInstance local:MainViewModel}"
         Topmost="{Binding Settings.KeepWindowTopmost, Mode=OneWay}">
-   <WindowChrome.WindowChrome>
-      <WindowChrome CaptionHeight="24" />
-   </WindowChrome.WindowChrome>
+    <WindowChrome.WindowChrome>
+        <WindowChrome CaptionHeight="24" />
+    </WindowChrome.WindowChrome>
 
-   <Grid Background="{StaticResource MainBackgroundBrush}">
-      <Grid.RowDefinitions>
-         <RowDefinition Height="24" />
-         <RowDefinition Height="Auto" />
-      </Grid.RowDefinitions>
-      <TextBlock Grid.Row="0"
+    <Grid Background="{StaticResource MainBackgroundBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="24" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0"
                  Text="{x:Static props:Resources.WindowTitle}"
                  FontSize="14"
                  Margin="0,3,0,0"
                  HorizontalAlignment="Center"
                  VerticalAlignment="Top" />
 
-      <Button Grid.Row="0"
+        <Button Grid.Row="0"
               Margin="0,1,1,0"
               HorizontalAlignment="Right"
               WindowChrome.IsHitTestVisibleInChrome="True"
@@ -46,71 +46,71 @@
               Style="{StaticResource CloseButtonStyle}"
               IsCancel="True" />
 
-      <StackPanel x:Name="WindowContents"
+        <StackPanel x:Name="WindowContents"
                   Grid.Row="1"
                   Margin="12,8,12,12"
                   Width="350">
 
-         <audio:RecorderControls DataContext="{Binding RecorderVm, Mode=OneTime}" />
+            <audio:RecorderControls DataContext="{Binding RecorderVm, Mode=OneTime}" />
 
-         <commonControls:AnimatedGroupedExpander Header="{x:Static props:Resources.WindowSettingsHeader}"
+            <commonControls:AnimatedGroupedExpander Header="{x:Static props:Resources.WindowSettingsHeader}"
                                                  Margin="0,0,0,4"
                                                  GroupName="Settings"
                                                  IsEnabled="{Binding StateVm.State, Converter={StaticResource IsEqual}, ConverterParameter={x:Static local:AppState.Stopped}, Mode=OneWay}">
-            <StackPanel>
-               <CheckBox Margin="0,0,0,2"
+                <StackPanel>
+                    <CheckBox Margin="0,0,0,2"
                          Content="{x:Static props:Resources.SettingsLocationCheckboxLabel}"
                          ToolTip="{x:Static props:Resources.SettingsLocationCheckboxToolTip}"
                          IsChecked="{Binding Settings.SaveSettingsInAppData, Mode=TwoWay}" />
 
-               <CheckBox Margin="0,0,0,2"
+                    <CheckBox Margin="0,0,0,2"
                          Content="{x:Static props:Resources.LaunchOnWindowsStartupCheckboxLabel}"
                          IsEnabled="{x:Static common:WindowsStartup.AllowedToStartWithWindows}"
                          ToolTip="{x:Static common:WindowsStartup.NotAllowedReason}"
                          IsChecked="{Binding Settings.LaunchOnWindowsStartup, Mode=TwoWay}" />
 
-               <CheckBox x:Name="KeepOpenInTrayCheckbox"
+                    <CheckBox x:Name="KeepOpenInTrayCheckbox"
                          Margin="0,0,0,2"
                          Content="{x:Static props:Resources.KeepOpenInTrayCheckboxLabel}"
                          ToolTip="{x:Static props:Resources.KeepOpenInTrayCheckboxToolTip}"
                          IsChecked="{Binding Settings.KeepOpenInTray, Mode=TwoWay}" />
 
-               <CheckBox Margin="8,2"
+                    <CheckBox Margin="8,2"
                          Content="{x:Static props:Resources.LaunchHiddenCheckboxLabel}"
                          ToolTip="{x:Static props:Resources.LaunchHiddenCheckboxToolTip}"
                          Visibility="{Binding ElementName=KeepOpenInTrayCheckbox, Path=IsChecked, Converter={StaticResource VisibleIfTrue}, Mode=OneWay}"
                          IsChecked="{Binding Settings.OpenHidden, Mode=TwoWay}" />
 
-               <CheckBox Content="{x:Static props:Resources.TopmostWindowCheckboxLabel}"
+                    <CheckBox Content="{x:Static props:Resources.TopmostWindowCheckboxLabel}"
                          ToolTip="{x:Static props:Resources.TopmostWindowCheckboxToolTip}"
                          IsChecked="{Binding Settings.KeepWindowTopmost, Mode=TwoWay}" />
-            </StackPanel>
-         </commonControls:AnimatedGroupedExpander>
+                </StackPanel>
+            </commonControls:AnimatedGroupedExpander>
 
-         <commonControls:AnimatedGroupedExpander Header="{x:Static props:Resources.RecorderSettingsHeader}"
+            <commonControls:AnimatedGroupedExpander Header="{x:Static props:Resources.RecorderSettingsHeader}"
                                                  GroupName="Settings"
                                                  Margin="0,0,0,4"
                                                  IsEnabled="{Binding StateVm.State, Converter={StaticResource IsEqual}, ConverterParameter={x:Static local:AppState.Stopped}, Mode=OneWay}">
-            <StackPanel>
-               <Grid>
-                  <Grid.RowDefinitions>
-                     <RowDefinition Height="Auto" />
-                     <RowDefinition Height="6" />
-                     <RowDefinition Height="Auto" />
-                     <RowDefinition Height="6" />
-                     <RowDefinition Height="Auto" />
-                  </Grid.RowDefinitions>
-                  <Grid.ColumnDefinitions>
-                     <ColumnDefinition Width="Auto" />
-                     <ColumnDefinition Width="4" />
-                     <ColumnDefinition Width="200" />
-                  </Grid.ColumnDefinitions>
-                  <TextBlock Text="{x:Static props:Resources.RecordHotkeyLabel}"
+                <StackPanel>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="6" />
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="6" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto" />
+                            <ColumnDefinition Width="4" />
+                            <ColumnDefinition Width="200" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{x:Static props:Resources.RecordHotkeyLabel}"
                              Grid.Row="0"
                              Grid.Column="0"
                              VerticalAlignment="Center" />
 
-                  <local:HotkeyControl x:Name="RecordHotkeyControl"
+                        <local:HotkeyControl x:Name="RecordHotkeyControl"
                                        Grid.Row="0"
                                        Grid.Column="2"
                                        HorizontalAlignment="Left"
@@ -119,75 +119,75 @@
                                        SetHotkeyCommand="{Binding SetHotkeyCommand, Mode=OneTime}"
                                        ErrorMessage="{Binding HotkeyRegisterError, Mode=OneWay}" />
 
-                  <TextBlock Text="{x:Static props:Resources.ProgressDisplayLabel}"
+                        <TextBlock Text="{x:Static props:Resources.ProgressDisplayLabel}"
                              Grid.Row="2"
                              Grid.Column="0"
                              VerticalAlignment="Center" />
-                  <ComboBox Grid.Row="2"
+                        <ComboBox Grid.Row="2"
                             Grid.Column="2"
                             ItemsSource="{commonUi:GetEnumValues local:ProgressDisplayType}"
                             SelectedValue="{Binding Settings.ProgressType, Mode=TwoWay}"
                             Height="22" />
 
-                  <TextBlock Text="{x:Static props:Resources.StopBehaviorLabel}"
+                        <TextBlock Text="{x:Static props:Resources.StopBehaviorLabel}"
                              Grid.Row="4"
                              Grid.Column="0"
                              VerticalAlignment="Center" />
-                  <ComboBox Grid.Row="4"
+                        <ComboBox Grid.Row="4"
                             Grid.Column="2"
                             ToolTip="{x:Static props:Resources.StopBehaviorComboBoxToolTip}"
                             ItemsSource="{commonUi:GetEnumValues local:StopBehaviorType}"
                             SelectedValue="{Binding Settings.StopBehavior, Mode=TwoWay}"
                             Height="22" />
-               </Grid>
+                    </Grid>
 
-               <CheckBox Content="{x:Static props:Resources.DisplayInputDevicesCheckboxLabel}"
+                    <CheckBox Content="{x:Static props:Resources.DisplayInputDevicesCheckboxLabel}"
                          Margin="0,6,0,0"
                          IsChecked="{Binding Settings.DisplayInputDevices, Mode=TwoWay}" />
 
-               <CheckBox Content="{x:Static props:Resources.PutTitleOnClipboardCheckboxLabel}"
+                    <CheckBox Content="{x:Static props:Resources.PutTitleOnClipboardCheckboxLabel}"
                          Margin="0,2,0,0"
                          IsChecked="{Binding Settings.PutTitleOnClipboard, Mode=TwoWay}" />
 
-               <CheckBox x:Name="OpenShazamCheckbox"
+                    <CheckBox x:Name="OpenShazamCheckbox"
                          Content="{x:Static props:Resources.OpenShazamCheckboxLabel}"
                          ToolTip="{x:Static props:Resources.OpenShazamCheckboxToolTip}"
                          Margin="0,2,0,0"
                          IsChecked="{Binding Settings.OpenShazamOnResultFound, Mode=TwoWay}" />
 
-               <CheckBox Content="{x:Static props:Resources.HideAfterRecordingCheckboxLabel}"
+                    <CheckBox Content="{x:Static props:Resources.HideAfterRecordingCheckboxLabel}"
                          Margin="0,2,0,0"
                          Visibility="{Binding Settings.KeepOpenInTray, Mode=OneWay, Converter={StaticResource VisibleIfTrue}}"
                          IsChecked="{Binding Settings.HideWindowAfterRecord, Mode=TwoWay}" />
 
-               <CheckBox Content="{x:Static props:Resources.UseSpotifyAppCheckboxLabel}"
+                    <CheckBox Content="{x:Static props:Resources.UseSpotifyAppCheckboxLabel}"
                          ToolTip="{x:Static props:Resources.UseSpotifyAppCheckboxToolTip}"
                          Margin="0,2,0,0"
                          IsChecked="{Binding Settings.OpenSpotifyLinksInApp, Mode=TwoWay}"
                          Visibility="{Binding CanOpenInSpotify, Mode=OneTime, Converter={StaticResource VisibleIfTrue}}" />
-            </StackPanel>
-         </commonControls:AnimatedGroupedExpander>
+                </StackPanel>
+            </commonControls:AnimatedGroupedExpander>
 
-         <commonControls:AnimatedGroupedExpander Header="{x:Static props:Resources.ApiSettingsHeader}"
+            <commonControls:AnimatedGroupedExpander Header="{x:Static props:Resources.ApiSettingsHeader}"
                                                  GroupName="Settings"
                                                  Margin="0,0,0,4"
                                                  Grid.IsSharedSizeScope="True"
                                                  IsEnabled="{Binding StateVm.State, Converter={StaticResource IsEqual}, ConverterParameter={x:Static local:AppState.Stopped}, Mode=OneWay}">
-            <StackPanel>
-               <Grid Margin="0,0,0,4"
+                <StackPanel>
+                    <Grid Margin="0,0,0,4"
                      HorizontalAlignment="Left">
-                  <Grid.ColumnDefinitions>
-                     <ColumnDefinition Width="Auto"
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"
                                        SharedSizeGroup="ApiSettingsLabels" />
-                     <ColumnDefinition Width="270" />
-                  </Grid.ColumnDefinitions>
-                  
-                  <TextBlock Grid.Column="0"
+                            <ColumnDefinition Width="270" />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0"
                              Text="{x:Static props:Resources.ApiKeyLabel}"
                              Margin="0,0,8,0"
                              VerticalAlignment="Center" />
 
-                  <PasswordBox Grid.Column="1"
+                        <PasswordBox Grid.Column="1"
                                x:Name="CustomApiKeyTextBox"
                                VerticalContentAlignment="Center"
                                Padding="0,0,0,1"
@@ -195,77 +195,103 @@
                                Height="19"
                                PasswordChanged="OnCustomApiKeyChanged" />
 
-                  <TextBlock Grid.Column="1" 
+                        <TextBlock Grid.Column="1" 
                              Text="{x:Static props:Resources.UsingDefaultApiKey}"
                              IsHitTestVisible="False"
                              Margin="4,0,0,0"
                              Opacity="0.6"
                              Visibility="{Binding Settings.KeyData.UseDefaultKey, Converter={StaticResource VisibleIfTrue}, Mode=OneWay}"
                              VerticalAlignment="Center" />
-               </Grid>
+                    </Grid>
 
-               <Grid Margin="0,0,0,6"
+                    <Grid Margin="0,0,0,4"
                      Visibility="{Binding Settings.KeyData.CanDisplayQuotaData, Converter={StaticResource VisibleIfTrue}, Mode=OneWay}">
-                  <Grid.ColumnDefinitions>
-                     <ColumnDefinition Width="Auto"
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"
                                        SharedSizeGroup="ApiSettingsLabels" />
-                     <ColumnDefinition Width="270" />
-                  </Grid.ColumnDefinitions>
-                  <TextBlock Grid.Column="0"
+                            <ColumnDefinition Width="270" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0"
                              Text="{x:Static props:Resources.QuotaLabel}"
                              Margin="0,0,8,0"
                              VerticalAlignment="Center" />
 
-                  <ProgressBar Grid.Column="1"
+                        <ProgressBar Grid.Column="1"
                                Height="18"
-                               Margin="-1,0,1,0"
+                               Margin="-1,0,2,0"
                                Background="White"
                                Foreground="{StaticResource ProgressBarFillBrush}"
                                Maximum="{Binding Settings.KeyData.QuotaLimit, Mode=OneWay}"
                                Value="{Binding Settings.KeyData.QuotaUsed, Mode=OneWay}"
                                ToolTip="{x:Static props:Resources.QuotaToolTip}" />
 
-                  <TextBlock Grid.Column="1"
+                        <TextBlock Grid.Column="1"
                              Margin="4,0,0,0"
                              VerticalAlignment="Center"
                              IsHitTestVisible="False">
                      <Run Text="{Binding Settings.KeyData.QuotaUsed, Mode=OneWay}" /> / <Run Text="{Binding Settings.KeyData.QuotaLimit, Mode=OneWay}" />
-                  </TextBlock>
-               </Grid>
+                        </TextBlock>
+                    </Grid>
+                    <Grid Margin="0,0,0,6" HorizontalAlignment="Left">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"
+                                       SharedSizeGroup="ApiSettingsLabels" />
+                            <ColumnDefinition Width="270" />
+                        </Grid.ColumnDefinitions>
 
-               <TextBlock VerticalAlignment="Center">
+                        <TextBlock Grid.Column="0"
+                             Text="{x:Static props:Resources.ApiProxyLabel}"
+                             Margin="0,0,8,0"
+                             VerticalAlignment="Center" />
+
+                        <TextBox Grid.Column="1"
+                               x:Name="CustomApiProxyTextBox"
+                               VerticalContentAlignment="Center"
+                               Padding="0,0,0,1"
+                               Height="19"
+                               TextChanged="OnCustomApiEndpointChanged" />
+
+                        <TextBlock Grid.Column="1" 
+                             Text="{x:Static props:Resources.UseCustomApiEndpoint}"
+                             IsHitTestVisible="False"
+                             Margin="4,0,0,0"
+                             Opacity="0.6"
+                             Visibility="{Binding Settings.UseDefaultApiEndpoint, Converter={StaticResource VisibleIfTrue}, Mode=OneWay}"
+                             VerticalAlignment="Center" />
+                    </Grid>
+                    <TextBlock VerticalAlignment="Center">
                   <Run Text="{x:Static props:Resources.ApiKeyInstructions}" />
                   <Hyperlink Command="{x:Static commonUi:UtilityCommands.OpenInBrowserCommand}"
                              CommandParameter="https://github.com/zemoto/WhatAmIHearing?tab=readme-ov-file#rate-limiting">
                      <Run Text="{x:Static props:Resources.Link}" />
                   </Hyperlink>
-               </TextBlock>
-            </StackPanel>
-         </commonControls:AnimatedGroupedExpander>
+                    </TextBlock>
+                </StackPanel>
+            </commonControls:AnimatedGroupedExpander>
 
-         <commonControls:AnimatedGroupedExpander Header="{x:Static props:Resources.HistoryHeader}"
+            <commonControls:AnimatedGroupedExpander Header="{x:Static props:Resources.HistoryHeader}"
                                                  Padding="0,4,0,0"
                                                  IsEnabled="{Binding StateVm.State, Converter={StaticResource IsEqual}, ConverterParameter={x:Static local:AppState.Stopped}, Mode=OneWay}">
-            <Grid>
-               <ListBox x:Name="HistoryListBox"
+                <Grid>
+                    <ListBox x:Name="HistoryListBox"
                         Height="{Binding Settings.HistoryHeight, Mode=TwoWay}"
                         MinHeight="60"
                         Style="{StaticResource HistoryListBoxStyle}"
                         ItemsSource="{Binding Settings.History, Mode=OneWay}"
                         SelectedItem="{Binding SelectedSong, Mode=TwoWay}" />
-               <commonControls:ResizeGripper Focusable="False"
+                    <commonControls:ResizeGripper Focusable="False"
                                              Template="{StaticResource HistoryResizeGripperTemplate}"
                                              VerticalAlignment="Bottom"
                                              HorizontalAlignment="Center"
                                              Direction="Vertical"
                                              Target="{Binding ElementName=HistoryListBox, Mode=OneTime}" />
-            </Grid>
-         </commonControls:AnimatedGroupedExpander>
+                </Grid>
+            </commonControls:AnimatedGroupedExpander>
 
-         <ContentControl Content="{Binding SelectedSong, Mode=OneWay}"
+            <ContentControl Content="{Binding SelectedSong, Mode=OneWay}"
                          IsTabStop="False"
                          Visibility="{Binding SelectedSong, Mode=OneWay, Converter={x:Static commonUi:NullVisibilityConverter.Instance}}"
                          Margin="0,6,0,0" />
-      </StackPanel>
-   </Grid>
+        </StackPanel>
+    </Grid>
 </Window>

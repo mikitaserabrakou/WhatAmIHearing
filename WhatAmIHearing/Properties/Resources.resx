@@ -282,4 +282,10 @@
   <data name="SendingSeconds" xml:space="preserve">
     <value>Sending {0} seconds of audio to Shazam</value>
   </data>
+  <data name="ApiProxyLabel" xml:space="preserve">
+    <value>Proxy:</value>
+  </data>
+  <data name="UseCustomApiEndpoint" xml:space="preserve">
+    <value>Custom API Endpoint. Leave empty for default.</value>
+  </data>
 </root>

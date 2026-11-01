@@ -191,6 +191,10 @@ internal sealed partial class AppSettings : ObservableObject
       newValue?.CollectionChanged += OnHistoryCollectionChanged;
    }
    private void OnHistoryCollectionChanged( object? sender, NotifyCollectionChangedEventArgs e ) => PassiveSave();
+   [ObservableProperty]
+   [NotifyPropertyChangedFor( nameof( UseDefaultApiEndpoint ) )]
+   public partial string CustomApiEndpoint { get;set; } = string.Empty;
+   public bool UseDefaultApiEndpoint => string.IsNullOrEmpty( CustomApiEndpoint );
 }
 
 internal sealed partial class ApiKeyData : ObservableObject
